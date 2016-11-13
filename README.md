@@ -150,7 +150,7 @@ One of following plugin is required.
 
 If your vim didn't be compiled with `+job`, following plugin is required.
 
-- [Shougo/vimporc.vim](https://github.com/Shougo/vimporc.vim)
+- [Shougo/vimproc.vim](https://github.com/Shougo/vimproc.vim)
 
 
 ## Requirements
