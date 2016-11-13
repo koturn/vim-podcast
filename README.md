@@ -42,9 +42,10 @@ If you want to stop playing, execute following command.
 ### Supported channel
 
 channel-name | podcast name
--------------|---------------------------------
-rebuildfm    | [rebuild.fm](https://rebuild.fm)
+-------------|---------------------------------------------
+backpacefm   | [backspace.fm](https://http://backspace.fm/)
 mozaicfm     | [mozaic.fm](https://mozaic.fm)
+rebuildfm    | [rebuild.fm](https://rebuild.fm)
 
 
 ## Installation
