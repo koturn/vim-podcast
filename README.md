@@ -43,7 +43,7 @@ If you want to stop playing, execute following command.
 
 channel-name | podcast name
 -------------|---------------------------------------------
-backpacefm   | [backspace.fm](https://http://backspace.fm/)
+backpacefm   | [backspace.fm](http://backspace.fm/)
 mozaicfm     | [mozaic.fm](https://mozaic.fm)
 rebuildfm    | [rebuild.fm](https://rebuild.fm)
 
