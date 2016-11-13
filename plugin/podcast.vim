@@ -13,10 +13,10 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 command! -bar PodcastStop  call podcast#stop()
-command! -bar -nargs=+ -complete=customlist,podcast#complete_channel PodcastUpdate  call podcast#update(<f-args>)
+command! -bar -nargs=* -complete=customlist,podcast#complete_channel PodcastUpdate  call podcast#update(<f-args>)
 command! -bar PodcastShowInfo  call podcast#show_info()
 
-command! -nargs=+ -complete=customlist,podcast#complete_channel CtrlPPodcast  call ctrlp#podcast#start(<f-args>)
+command! -nargs=* -complete=customlist,podcast#complete_channel CtrlPPodcast  call ctrlp#podcast#start(<f-args>)
 
 
 let &cpo = s:save_cpo

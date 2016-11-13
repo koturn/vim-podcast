@@ -23,7 +23,6 @@ let s:channel_names = map(split(globpath(expand('<sfile>:h') . '/podcast/', '*.v
 
 function! podcast#play(item) abort
   let s:current_item = a:item
-  echomsg a:item.enclosure
   call s:mplayer.play(a:item.enclosure)
 endfunction
 
@@ -31,7 +30,8 @@ function! podcast#stop() abort
   call s:mplayer.stop()
 endfunction
 
-function! podcast#update(names) abort
+function! podcast#update(...) abort
+  let names = a:0 == 0 podcast#get_channel_names() : a:000
   for name in names
     call s:update_channel(name)
   endfor
@@ -46,20 +46,19 @@ function! podcast#get_channel_names() abort
   return copy(s:channel_names)
 endfunction
 
-function! podcast#show_info(name) abort
-  if empty(s:current_channel) || !s:mplayer.is_playing() | return | endif
-  let channel = podcast#{name}#define()
-  let start_time = reltime()
-  if has_key(channel, 'show_info')
-    channel.show_info()
-  else
-    echo '[TITLE] ' s:current_channel.title
-    echo '[PUBLISHED DATE] ' s:current_channel.pubDate
-    echo '[FILE URL] ' s:current_channel.enclosure
-    echo '[SUMMARY]'
-    echo '  ' s:current_channel.summary
+function! podcast#show_info() abort
+  if empty(s:current_item) || !s:mplayer.is_playing() | return | endif
+  echo '[TITLE]' s:current_item.title
+  echo '[PUBLISHED DATE]' s:current_item.pubDate
+  if has_key(s:current_item, 'duration')
+    echo '[DURATION]' s:current_item.duration
+  endif
+  echo '[FILE URL]' s:current_item.enclosure
+  echo '[SUMMARY]'
+  echo ' ' s:current_item.summary
+  if !empty(s:current_item.note)
     echo '[NOTES]'
-    for item in s:current_channel.note
+    for item in s:current_item.note
       echo '  -' item.text
     endfor
   endif
@@ -72,9 +71,7 @@ endfunction
 
 
 function! s:update_channel(name) abort
-  if g:podcast#verbose
-    echomsg '[vim-podcast]: Start update channel:' a:name
-  endif
+  echomsg '[vim-podcast]: Start update channel:' a:name
   let channel = podcast#{a:name}#define()
   let start_time = reltime()
 
