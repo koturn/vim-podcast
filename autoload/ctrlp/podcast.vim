@@ -17,7 +17,7 @@ set cpo&vim
 let s:ctrlp_builtins = ctrlp#getvar('g:ctrlp_builtins')
 
 function! s:get_sid_prefix() abort
-  return matchstr(expand('<sfile>'), '^function \zs<SNR>\d\+_\zeget_sid_prefix$')
+  return matchstr(expand('<sfile>'), 'function \zs<SNR>\d\+_\zeget_sid_prefix$')
 endfunction
 let s:sid_prefix = s:get_sid_prefix()
 delfunction s:get_sid_prefix
